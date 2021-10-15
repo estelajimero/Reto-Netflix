@@ -9,7 +9,7 @@ body {
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     
     padding: 2.5rem;
@@ -18,12 +18,14 @@ header {
         margin-right: 2rem;
 
         .platform-title {
-            display: none;
+            visibility: hidden;
         }
     }
 
     .header-buttons {
         display: flex;
+        justify-content: space-around;
+        align-items: center;
         
         & div {
             margin-right: 2rem;
@@ -32,11 +34,7 @@ header {
 }
 
 main {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 
     .section-title {
         font-size: 2em;
@@ -46,11 +44,81 @@ main {
     section {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+
+        .top-item:nth-child(4), .top-item:nth-child(5) {
+            display: none;
+        }
+    }
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 992px) {
+    header {
+        display: flex;
+        justify-content: space-between;
     }
 
-    .top {
-        flex-direction: column-reverse;
+    main {
+        text-align: left;
+
+        section {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            margin: 2rem;
+
+            .item {
+                margin: .3rem;
+                flex-grow: 3;
+
+                img {
+                   min-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    header {
+        .header-logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+    
+            .platform-title {
+                visibility: visible;
+                font-size: 2em;
+                font-weight: bold;
+                margin-left: 2rem;
+            }
+        }
+
+        .header-buttons div:hover {
+            background-color: $white;
+            color: hsl(0, 0, 0%);
+            padding: 1rem;
+            border-radius: .3rem;
+        }
+    }
+
+    main {
+        section {
+            .top-item {
+                min-width: 225px;
+            }
+
+            .item {
+                min-width: 250px;
+
+                &:hover {
+                    transform: scale(1.1);
+                    transition: all .2s ease-in-out;
+                }
+            }
+        }
     }
 }
